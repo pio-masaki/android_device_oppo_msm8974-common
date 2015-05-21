@@ -222,20 +222,44 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true \
     ro.opengles.version=196608 \
     ro.qualcomm.bt.hci_transport=smd \
-    ro.telephony.default_network=9 \
+#    ro.telephony.default_network=9 \
     ro.use_data_netmgrd=true \
     persist.data.netmgrd.qos.enable=true \
     persist.data.tcpackprio.enable=true \
     ro.data.large_tcp_window_size=true \
-    telephony.lteOnGsmDevice=1 \
+#    telephony.lteOnGsmDevice=1 \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15 \
     ro.qualcomm.perf.cores_online=2 \
     ro.vendor.extension_library=libqti-perfd-client.so \
     ro.telephony.call_ring.multiple=0
 
+# testing from shamu
+#Reduce IMS logging
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.ims.disableDebugLogs=1
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.radio.apm_sim_not_pwdn=1 \
+    persist.radio.no_wait_for_card=1 \
+    persist.radio.sib16_support=1
+#Disable QC Oem Hook
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.radio.oem_socket=false
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.default_cdma_sub=0
+
+# LTE, CDMA, GSM/WCDMA
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.ril.force_eri_from_xml=true \
+    ro.telephony.default_network=10 \
+    ro.telephony.get_imsi_from_sim=true \
+    telephony.lteOnCdmaDevice=1
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qti.sensors.ir_proximity=true
+# end testing from shamu
 
 # Permissions
 PRODUCT_COPY_FILES += \
